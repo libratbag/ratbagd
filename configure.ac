@@ -133,14 +133,21 @@ AC_ARG_WITH([systemd-unit-dir],
 SYSTEMD_UNIT_DIR=${unitdir}
 AC_SUBST(SYSTEMD_UNIT_DIR)
 
-AC_ARG_WITH([dbus-root-dir],
-	    AS_HELP_STRING([--with-dbus-root-dir=DIR],
+AC_ARG_WITH([dbus-services-dir],
+	    AS_HELP_STRING([--with-dbus-services-dir=DIR],
 			   [dbus service directory [[default=$datadir/dbus-1]]]),
-	    [unitdir="$withval"],
-	    [unitdir="$datadir/dbus-1"])
-DBUS_SYSTEM_SERVICES_DIR="${datadir}/system-services"
-DBUS_SYSTEM_CONFIG_DIR="${datadir}/system.d"
+	    [dbussrvdir="$withval"],
+	    [dbussrvdir="$datadir/dbus-1"])
+DBUS_SYSTEM_SERVICES_DIR="${dbussrvir}"
 AC_SUBST(DBUS_SYSTEM_SERVICES_DIR)
+
+AC_ARG_WITH([dbus-config-dir],
+	    AS_HELP_STRING([--with-dbus-config-dir=DIR],
+			   [dbus service directory [[default=$datadir/system.d]]]),
+	    [dbusconfdir="$withval"],
+	    [dbusconfdir="$datadir/system.d"])
+DBUS_SYSTEM_CONFIG_DIR="${dbusconfdir}"
+AC_SUBST(DBUS_SYSTEM_CONFIG_DIR)
 
 # ------------------------------------------------------------------------------
 # report
@@ -156,6 +163,10 @@ AC_MSG_RESULT([
         exec_prefix:            ${exec_prefix}
         includedir:             ${includedir}
         libdir:                 ${libdir}
+
+        systemd-unit-dir:       ${unitdir}
+        dbus-services-dir:      ${dbussrvdir}
+        dbus-config-dir:        ${dbusconfdir}
 
         CFLAGS:                 ${OUR_CFLAGS} ${CFLAGS}
         CPPFLAGS:               ${OUR_CPPFLAGS} ${CPPFLAGS}
