@@ -103,7 +103,7 @@ EXTRA_DIST += \
 	      ratbagd.service.in \
 	      dbus/org.freedesktop.ratbag1.service.in \
 	      dbus/org.freedesktop.ratbag1.conf
-BUILT_SOURCES += ratbagd.service dbus/org.freedesktop.ratbag1.service
+BUILT_SOURCES += ratbagd.service dbus/org.freedesktop.ratbag1.service dbus/org.freedesktop.ratbag1.conf
 
 # ------------------------------------------------------------------------------
 # python module
